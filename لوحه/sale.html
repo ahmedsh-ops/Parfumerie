@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,14 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <nav class="navbar" style="background-color: var(--color-bg-dark); color: var(--color-text-light);">
-        <a href="index.html">HOME</a>
+        <a href="/index.html">HOME</a>
         <a href="sale.html">SALE</a>
         <a href="shop.html">SHOP</a>
         <a href="blog.html">BLOG</a>
@@ -26,7 +30,8 @@
     </header>
 
     <section class="promo-section" style="padding-top: 4rem;">
-        <div class="product-grid" id="sale-grid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 3rem; max-width: 1200px;">
+        <div class="product-grid" id="sale-grid"
+            style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 3rem; max-width: 1200px;">
             <!-- Products will be injected here by JS -->
         </div>
     </section>
@@ -41,16 +46,16 @@
         document.addEventListener('DOMContentLoaded', () => {
             const grid = document.getElementById('sale-grid');
             grid.innerHTML = ''; // clear
-            
+
             // Get 5 products for sale
             const saleProducts = products.slice(0, 5);
-            
+
             saleProducts.forEach(p => {
                 const item = document.createElement('div');
                 item.className = 'product';
                 // Calculate discounted price (e.g. 20% off)
                 const discountedPrice = Math.floor(p.price * 0.8);
-                
+
                 item.innerHTML = `
                     <a href="product.html?id=${p.id}" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; width: 100%;">
                         <div class="product-img-wrapper" style="position: relative;">
@@ -69,4 +74,5 @@
         });
     </script>
 </body>
+
 </html>
