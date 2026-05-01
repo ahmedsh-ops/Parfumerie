@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Jacqueline Parfumerie</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar" style="background-color: var(--color-bg-dark); color: var(--color-text-light);">
+        <a href="index.html">HOME</a>
+        <a href="sale.html">SALE</a>
+        <a href="shop.html">SHOP</a>
+        <a href="blog.html">BLOG</a>
+        <a href="contact.html">CONTACT</a>
+        <a href="login.html">LOGIN</a>
+        <a href="cart.html">CART (0)</a>
+    </nav>
+
+    <header class="inner-hero">
+        <h1 class="title">SHOP</h1>
+        <p class="subtitle" style="margin-top: 1rem;">All Collections</p>
+    </header>
+
+    <section class="promo-section" style="padding-top: 4rem;">
+        <div class="product-grid" id="shop-grid" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 3rem; max-width: 1200px;">
+            <!-- Products will be injected here by JS -->
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-left">REALLYGREATSITE.COM</div>
+        <div class="footer-right">@REALLYGREATSITE</div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('shop-grid');
+            grid.innerHTML = ''; // clear
+            
+            products.forEach(p => {
+                const item = document.createElement('div');
+                item.className = 'product';
+                item.innerHTML = `
+                    <a href="product.html?id=${p.id}" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; width: 100%;">
+                        <div class="product-img-wrapper">
+                            <img src="${p.img}" alt="${p.name}">
+                        </div>
+                        <p class="prod-num" style="color: rgba(255, 255, 255, 0.7);">NO. ${p.id}</p>
+                        <p class="prod-name" style="color: #fff;">${p.name}</p>
+                        <p class="italic" style="margin-top:0.5rem; color: #fff;">$${p.price}.00</p>
+                    </a>
+                `;
+                grid.appendChild(item);
+            });
+        });
+    </script>
+</body>
+</html>
