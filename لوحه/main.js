@@ -25,7 +25,7 @@ function saveCart(cart) {
 function updateCartCount() {
     const cart = getCart();
     const count = cart.reduce((sum, item) => sum + parseInt(item.quantity), 0);
-    const cartLinks = document.querySelectorAll('.navbar a[href="cart.html"]');
+    const cartLinks = document.querySelectorAll('.navbar a[href*="cart.html"]');
     cartLinks.forEach(link => {
         link.textContent = `CART (${count})`;
     });

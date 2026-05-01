@@ -151,6 +151,41 @@ a {
   opacity: 0.7;
 }
 
+.nav-links {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  z-index: 100;
+  padding: 10px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 2px;
+  background-color: var(--color-text-light);
+  margin: 4px 0;
+  transition: 0.4s;
+}
+
+/* Hamburger animation */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
 .hero-content {
   flex: 1;
   display: flex;
@@ -203,6 +238,11 @@ a {
   gap: 3rem;
   max-width: 900px;
   margin: 0 auto;
+}
+
+.index-grid {
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 1200px;
 }
 
 .product {
@@ -300,19 +340,42 @@ a {
 /* --- Responsive Design --- */
 @media (max-width: 900px) {
   .navbar {
-    gap: 1.5rem;
-    padding: 2rem 1rem;
-    font-size: 0.7rem;
+    justify-content: flex-end;
+    padding: 1.5rem 2rem;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    background-color: var(--color-bg-dark);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    transition: 0.5s;
+    z-index: 90;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .hamburger {
+    display: flex;
   }
 
   .title {
     font-size: clamp(3.5rem, 12vw, 6rem);
   }
 
-  .product-grid {
-    grid-template-columns: 1fr;
-    gap: 4rem;
-    max-width: 400px;
+  .product-grid, .index-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    max-width: 600px;
   }
 
   .split-section {
@@ -349,6 +412,12 @@ a {
 
   .promo-desc {
     font-size: 1.05rem;
+  }
+
+  .product-grid, .index-grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    max-width: 400px;
   }
 }
 
