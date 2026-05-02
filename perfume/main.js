@@ -24,12 +24,20 @@ function saveCart(cart) {
 
 function updateCartCount() {
     const cart = getCart();
-    const count = cart.reduce((sum, item) => sum + parseInt(item.quantity), 0);
-    const cartLinks = document.querySelectorAll('.navbar a[href*="cart.html"]');
+    const count = cart.reduce((sum, item) => {
+        const qty = parseInt(item.quantity);
+        return sum + (isNaN(qty) ? 0 : qty);
+    }, 0);
+    
+    // Find all links that point to cart.html, regardless of path
+    const cartLinks = document.querySelectorAll('a[href*="cart.html"]');
     cartLinks.forEach(link => {
         link.textContent = `CART (${count})`;
     });
 }
+
+// Update immediately on script load
+updateCartCount();
 
 function addToCart(product, size, quantity) {
     const cart = getCart();
@@ -44,7 +52,7 @@ function addToCart(product, size, quantity) {
 
 document.addEventListener('DOMContentLoaded', () => {
     updateCartCount();
-
+    
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('nav-links');
 
