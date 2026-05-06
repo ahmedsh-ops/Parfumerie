@@ -17,9 +17,24 @@ function getCart() {
     return JSON.parse(localStorage.getItem('cart')) || [];
 }
 
-function saveCart(cart) {
+async function saveCart(cart) {
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartCount();
+
+    // Sync with Firestore if logged in
+    if (typeof firebase !== 'undefined' && firebase.apps.length > 0) {
+        const user = firebase.auth().currentUser;
+        if (user) {
+            try {
+                await firebase.firestore().collection('carts').doc(user.uid).set({
+                    items: cart,
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+            } catch (error) {
+                console.error("Error syncing cart:", error);
+            }
+        }
+    }
 }
 
 function updateCartCount() {
@@ -70,4 +85,41 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // Sync cart when auth state changes
+    if (typeof firebase !== 'undefined' && firebase.apps.length > 0) {
+        firebase.auth().onAuthStateChanged(async (user) => {
+            const navLogin = document.getElementById('nav-login');
+            const navProfile = document.getElementById('nav-profile');
+
+            if (user) {
+                // User logged in, update navbar
+                if (navLogin) navLogin.style.display = 'none';
+                if (navProfile) navProfile.style.display = 'inline-block';
+
+                // Fetch their cart from Firestore
+                try {
+                    const doc = await firebase.firestore().collection('carts').doc(user.uid).get();
+                    if (doc.exists) {
+                        const firestoreCart = doc.data().items || [];
+                        const localCart = getCart();
+                        
+                        if (localCart.length === 0 && firestoreCart.length > 0) {
+                            localStorage.setItem('cart', JSON.stringify(firestoreCart));
+                            updateCartCount();
+                            if (typeof renderCart === 'function') renderCart();
+                        }
+                    }
+                } catch (error) {
+                    console.error("Error fetching cart from Firestore:", error);
+                }
+            } else {
+                // User logged out
+                if (navLogin) navLogin.style.display = 'inline-block';
+                if (navProfile) navProfile.style.display = 'none';
+            }
+        });
+    }
 });
+
+

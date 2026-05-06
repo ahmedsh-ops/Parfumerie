@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jacqueline Parfumerie</title>
-    <link rel="stylesheet" href="/perfume/style.css">
+    <link rel="stylesheet" href="perfume/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -17,18 +17,19 @@
 
     <header class="hero">
         <div class="hero-bg-wrapper">
-            <img class="hero-bg" src="/perfume/5567093e-9b17-41b6-a4fd-526e793e41e1.png" alt="Perfume background">
+            <img class="hero-bg" src="perfume/5567093e-9b17-41b6-a4fd-526e793e41e1.png" alt="Perfume background">
             <div class="hero-overlay"></div>
             <div class="paper-texture"></div>
         </div>
 
         <nav class="navbar">
-            <a href="/perfume/sale.html">SALE</a>
-            <a href="/perfume/shop.html">SHOP</a>
-            <a href="/perfume/blog.html">BLOG</a>
-            <a href="/perfume/contact.html">CONTACT</a>
-            <a href="/perfume/login.html">LOGIN</a>
-            <a href="/perfume/cart.html">CART (0)</a>
+            <a href="perfume/sale.html">SALE</a>
+            <a href="perfume/shop.html">SHOP</a>
+            <a href="perfume/blog.html">BLOG</a>
+            <a href="perfume/contact.html">CONTACT</a>
+            <a href="perfume/profile.html" id="nav-profile" style="display: none;">PROFILE</a>
+            <a href="perfume/login.html" id="nav-login">LOGIN</a>
+            <a href="perfume/cart.html">CART (0)</a>
 
         </nav>
 
@@ -37,7 +38,7 @@
             <h1 class="title">JACQUELINE</h1>
             <p class="description">These floral notes dance gracefully with the zesty touch of bergamot,<br>creating an
                 opening that is both refreshing and enchanting.</p>
-            <a href="/perfume/shop.html" class="btn-outline">SHOP NOW</a>
+            <a href="perfume/shop.html" class="btn-outline">SHOP NOW</a>
         </div>
     </header>
 
@@ -51,7 +52,7 @@
 
         <div class="product-grid index-grid">
             <div class="product">
-                <a href="/perfume/product.html?id=1"
+                <a href="perfume/product.html?id=1"
                     style="text-decoration: none; display: flex; flex-direction: column; align-items: center; width: 100%;">
                     <div class="product-img-wrapper">
                         <img src="https://i.pinimg.com/736x/0a/d5/82/0ad5825cf5b3082d50021b694ecbb6fe.jpg"
@@ -62,7 +63,7 @@
                 </a>
             </div>
             <div class="product">
-                <a href="/perfume/product.html?id=2"
+                <a href="perfume/product.html?id=2"
                     style="text-decoration: none; display: flex; flex-direction: column; align-items: center; width: 100%;">
                     <div class="product-img-wrapper">
                         <img src="https://i.pinimg.com/control1/736x/d7/93/87/d79387bfc2e42110f54f7594f7fb15bc.jpg"
@@ -73,7 +74,7 @@
                 </a>
             </div>
             <div class="product">
-                <a href="/perfume/product.html?id=3"
+                <a href="perfume/product.html?id=3"
                     style="text-decoration: none; display: flex; flex-direction: column; align-items: center; width: 100%;">
                     <div class="product-img-wrapper">
                         <img src="https://i.pinimg.com/736x/3f/82/f4/3f82f4e85f79dcfcd9180632618328dd.jpg"
@@ -84,7 +85,7 @@
                 </a>
             </div>
             <div class="product">
-                <a href="/perfume/product.html?id=4"
+                <a href="perfume/product.html?id=4"
                     style="text-decoration: none; display: flex; flex-direction: column; align-items: center; width: 100%;">
                     <div class="product-img-wrapper">
                         <img src="https://i.pinimg.com/1200x/15/67/9c/15679cfe659745f62319d74964ef4e67.jpg"
@@ -137,7 +138,19 @@
         <div class="footer-right">@REALLYGREATSITE</div>
     </footer>
 
-    <script src="/perfume/main.js"></script>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="perfume/firebase-config.js"></script>
+    
+    <script>
+        // Initialize Firebase
+        if (typeof firebaseConfig !== 'undefined') {
+            firebase.initializeApp(firebaseConfig);
+        }
+    </script>
+    <script src="perfume/main.js"></script>
 </body>
 
 </html>

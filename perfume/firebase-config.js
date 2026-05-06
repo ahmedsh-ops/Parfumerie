@@ -1,23 +1,17 @@
 // Firebase Configuration
-// Replace these placeholders with your actual Firebase project credentials
-// You can get them from the Firebase Console (https://console.firebase.google.com/)
-
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAuZ8n9NE9PI30QROGELVYZdu-gXqB3U8g",
+  authDomain: "perfume-1db14.firebaseapp.com",
+  projectId: "perfume-1db14",
+  storageBucket: "perfume-1db14.firebasestorage.app",
+  messagingSenderId: "663478223707",
+  appId: "1:663478223707:web:16947b79c1a10942a4d07e",
+  measurementId: "G-C76MXDFZGW"
 };
 
 // EmailJS Configuration
-// Replace these with your actual EmailJS IDs (https://www.emailjs.com/)
 const emailjsConfig = {
   serviceId: "YOUR_SERVICE_ID",
   templateId: "YOUR_TEMPLATE_ID",
   publicKey: "YOUR_PUBLIC_KEY"
 };
-
-// Export configs if using modules, but since we're using CDNs in plain JS:
-// These will be available globally if this script is loaded.

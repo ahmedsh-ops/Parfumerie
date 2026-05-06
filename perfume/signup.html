@@ -18,7 +18,7 @@
         <div class="auth-image">
             <img src="https://i.pinimg.com/1200x/cb/06/9d/cb069d46828e7845534f5b45a1ffad18.jpg"
                 alt="Perfume aesthetics">
-            <a href="/index.html"
+            <a href="../index.html"
                 style="position: absolute; top: 2rem; left: 2rem; color: white; font-family: var(--font-sans); font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;">&larr;
                 BACK TO HOME</a>
         </div>
@@ -42,7 +42,11 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Password</label>
-                        <input type="password" id="password" class="form-input" required>
+                        <input type="password" id="password" class="form-input" required minlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Confirm Password</label>
+                        <input type="password" id="confirm-password" class="form-input" required>
                     </div>
                     <button type="submit" class="btn-solid" style="margin-top: 1rem;">Sign Up</button>
                 </form>
@@ -77,6 +81,14 @@
             const lastName = document.getElementById('last-name').value;
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            // Password match validation
+            if (password !== confirmPassword) {
+                errorDiv.textContent = "Passwords do not match!";
+                errorDiv.style.display = 'block';
+                return;
+            }
 
             try {
                 const userCredential = await auth.createUserWithEmailAndPassword(email, password);
@@ -90,7 +102,7 @@
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
 
-                window.location.href = '/index.html';
+                window.location.href = '../index.html';
             } catch (error) {
                 errorDiv.textContent = error.message;
                 errorDiv.style.display = 'block';

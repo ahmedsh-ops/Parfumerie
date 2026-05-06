@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve ."
+  },
+  "dependencies": {
+    "firebase": "^12.12.1"
+  }
+}

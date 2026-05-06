@@ -15,7 +15,7 @@
 
 <body class="bg-light">
     <nav class="navbar" style="color: var(--color-text-dark); border-bottom: 1px solid rgba(42,40,38,0.1);">
-        <a href="/index.html">HOME</a>
+        <a href="../index.html">HOME</a>
         <a href="sale.html">SALE</a>
         <a href="shop.html">SHOP</a>
         <a href="blog.html">BLOG</a>
@@ -30,18 +30,18 @@
                 CONTACT</h1>
             <p class="promo-desc dark-text" style="color: rgba(42,40,38,0.8); text-align: center;">We would love to hear
                 from you.</p>
-            <form>
+            <form id="contact-form">
                 <div class="form-group">
                     <label class="form-label">Name</label>
-                    <input type="text" class="form-input" required>
+                    <input type="text" name="name" class="form-input" required>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Email</label>
-                    <input type="email" class="form-input" required>
+                    <input type="email" name="email" class="form-input" required>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Message</label>
-                    <textarea class="form-input" rows="5" required></textarea>
+                    <textarea name="message" class="form-input" rows="5" required></textarea>
                 </div>
                 <button type="submit" class="btn-solid" style="margin-top: 1rem;">Send Message</button>
             </form>
@@ -52,6 +52,43 @@
         <div class="footer-left">REALLYGREATSITE.COM</div>
         <div class="footer-right">@REALLYGREATSITE</div>
     </footer>
+
+    <script>
+        const contactForm = document.getElementById("contact-form");
+        if (contactForm) {
+            contactForm.addEventListener("submit", function (e) {
+                e.preventDefault();
+                const btn = this.querySelector('button');
+                const originalText = btn.textContent;
+                btn.textContent = "SENDING...";
+
+                fetch("https://formsubmit.co/ajax/a.sherif.student@gmail.com", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: this.name.value,
+                        email: this.email.value,
+                        message: this.message.value,
+                        _subject: "New Message from Jacqueline Parfumerie"
+                    })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert("Message sent successfully!");
+                        this.reset();
+                        btn.textContent = originalText;
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        alert("Error sending message.");
+                        btn.textContent = originalText;
+                    });
+            });
+        }
+    </script>
 </body>
 
 </html>
